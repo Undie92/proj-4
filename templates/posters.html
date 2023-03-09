@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-12 mt-3 left">
+            <div class="row">
+                {% for product in page_obj %}
+                <div class="col">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="image-container">
+                                <!-- Product image-->
+                                {% if 'placeholder' in product.featured_image.url %}
+                                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                                {% else %}
+                                <img class="card-img-top" src="{{ product.featured_image.url }}" alt="..." />
+                                {% endif %}
+                            </div>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ product.name }}</h5>
+                                <!-- Product price-->
+                                    Price: {{ product.price }} $
+                                </div>
+                            </div>
+                            <div class="card-footer p-6 pt-0 border-top-0 bg-transparent">
+                                <div class="btn-group">
+                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'shopitem' %}">View Item</a>
+                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'shopitem' %}">Add to cart</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:5 %}
+            </div>
+            
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+
+            </div>
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item me-2">
+                <a href="?page={{ page_obj.previous_page_number }}" 
+                    class="page-link">&laquo; Previous</a></li>
+                {% endif %}
+                <span class="current pt-2">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                <li class="page-item ms-2">
+                <a href="?page={{ page_obj.next_page_number }}" 
+                    class="page-link"> NEXT &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    </div>
+
+{% endblock %}

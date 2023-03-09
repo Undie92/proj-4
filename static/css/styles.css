@@ -286,6 +286,10 @@ figure {
   margin: 0 0 1rem;
 }
 
+.image-container {
+  position: relative;
+}
+
 img,
 svg {
   vertical-align: middle;
@@ -7423,6 +7427,10 @@ textarea.form-control-lg {
 
 .p-5 {
   padding: 3rem !important;
+}
+
+.p-6 {
+  padding: 3.5rem !important;
 }
 
 .px-0 {
