@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from datetime import datetime
 from product.models import Product, Category
@@ -22,9 +22,6 @@ def all_products(request):
 
 
 
-def shop_item(request):
-    return render(request, 'shopitem.html')
-
 def about(request):
     return render(request, 'about.html')
 
@@ -46,4 +43,6 @@ def canvas(request):
     return render(request, 'canvas.html', {'page_obj': page_obj})
 
 
+def shop_item(request):
+    return render(request, 'shopitem.html')
     
