@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from PROJ_4_APP.views import base_template, shop_item, all_products, about, posters
+from PROJ_4_APP.views import base_template, shop_item, all_products, about, posters, canvas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +23,6 @@ urlpatterns = [
     path('shopitem', shop_item, name='shopitem'),
     path('allproducts', all_products, name='allproducts'),
     path('about', about, name='about'),
-    path('posters', posters, name='posters')
+    path('posters', posters, name='posters'),
+    path('canvas', canvas, name='canvas'),
 ]

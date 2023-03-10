@@ -7686,6 +7686,11 @@ textarea.form-control-lg {
   color: white !important;
 }
 
+.no-text-decoration {
+  text-decoration: none !important;
+  color: black !important;
+}
+
 .text-decoration-underline {
   text-decoration: underline !important;
 }

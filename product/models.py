@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-class Categorie(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     
@@ -13,14 +13,15 @@ class Categorie(models.Model):
         return self.name
     
 class Product(models.Model):
-    category = models.ForeignKey(Categorie, related_name='products', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
-    price = models.IntegerField()
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
     featured_image = CloudinaryField('image', default='placeholder')
-    
+
+
     class Meta:
         ordering = ['-created_at', '-price', 'price',]
         
