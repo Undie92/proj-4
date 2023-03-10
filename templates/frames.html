@@ -4,16 +4,6 @@
 
 <div class="container-fluid">
     <div class="row">
-        <h3 class="col-12 mt-3 text-center">Categories</h3>
-        <ul class="row col-12 mt-3 text-center">
-            <li><a href="{% url 'allproducts' %}" 
-                class="{% if not active_category %}text-decoration-none text-black{% else %}text-decoration-none text-black{% endif %}">
-                All Products</a></li>
-            {% for category in categories %}
-            <li><a href="{% url 'allproducts' %}?category={{ category.slug }}" 
-                class="{% if category.slug == active_category %}text-decoration-none text-black{% else %}text-decoration-none text-black{% endif %}">{{ category.name }}</a></li>
-            {% endfor %}
-        </ul>
 
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 justify-content-center">
@@ -49,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                {% if forloop.counter|divisibleby:4 %}
+                {% if forloop.counter|divisibleby:3 %}
             </div>
             
             <div class="row justify-content-center">

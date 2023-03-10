@@ -10,12 +10,24 @@ def base_template(request):
 
 
 def all_products(request):
-    category = Category.objects.all()
     products = Product.objects.all()
+    categories = Category.objects.all()
+    paginator = Paginator(products, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    active_category = request.GET.get('category', '')
+    
+    if active_category:
+        products = products.filter(category__slug=active_category)
+        paginator = Paginator(products, 12)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     
     context = {
-        'category': category,
-        'products': products
+        'categories': categories,
+        'page_obj': page_obj,
+        'active_category': active_category
     }
     
     return render(request, 'allproducts.html', context)
@@ -41,6 +53,14 @@ def canvas(request):
     page_obj = paginator.get_page(page_number)
    
     return render(request, 'canvas.html', {'page_obj': page_obj})
+
+def frames(request):
+    products_frames = Product.objects.all().filter(category__slug="frames")
+    paginator = Paginator(products_frames, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'frames.html', {'page_obj': page_obj})
 
 
 def shop_item(request):
