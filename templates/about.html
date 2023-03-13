@@ -2,5 +2,32 @@
 
 {% block content %}
 
+{% for rebecka in about %}
+<div class="container">
+    <div class="row">
+        <div class="col col-xl-6 col-l-6 col-xs-6 col-md-3">
+            <h1>About Me:</h1>
+            <p>{{ rebecka.description }}</p>
+        </div>
+        <div class="col">
+            <div class="card mb-4 col-xl-6 col-l-6 col-xs-6 col-md-3s">
+                <div class="card-body">
+                    <div class="image-container">
+                        {% if 'placeholder' in rebecka.featured_image.url %}
+                        <img class="card-img-top img-fluid" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="...">
+                        {% else %}
+                        <img class="card-img-top img-fluid" src="{{ rebecka.featured_image.url }}" alt="..." >
+                        {% endif %}
+                    </div>
+                    <div class="card-body p-3">
+                        <h3 class="text-center">{{ rebecka.first_name }} {{ rebecka.last_name}}</h3>
+                        <p class="text-center"><span class="fw-bolder">Born in: </span>{{ rebecka.birth_date }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}

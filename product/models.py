@@ -23,7 +23,39 @@ class Product(models.Model):
 
 
     class Meta:
-        ordering = ['-created_at', '-price', 'price',]
+        ordering = ['created_at', '-price', 'price',]
         
     def __str__(self):
         return self.name
+    
+class SingleProduct(models.Model):
+    category = models.ForeignKey(Category, related_name='singleproduct', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=255, unique=True)
+    description = models.TextField(blank=True, null=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    featured_image = CloudinaryField('image', default='placeholder')
+    
+    class Meta:
+        ordering = ['name']
+    
+    def __str__(self):
+        return self.name
+    
+class About(models.Model):
+    featured_image = CloudinaryField('image', default='placeholder')
+    first_name = models.CharField(max_length=40, unique=True)
+    last_name = models.CharField(max_length=40, unique=True)
+    slug = models.SlugField(max_length=255, unique=True)
+    description = models.TextField(blank=True, null=True)
+    birth_date = models.DateField()
+    
+        
+    def __str__(self):
+        return self.first_name
+    
+    
+    def get_age(self):
+        age = datetime.date.today()-self.birth_date
+        return int((age).days/365.25)

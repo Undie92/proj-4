@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="row">
         <h3 class="col-12 mt-3 text-center">Categories</h3>
-        <ul class="row col-12 mt-3 text-center">
+        <ul class="col-12 mt-3 text-center">
             <li><a href="{% url 'allproducts' %}" 
                 class="{% if not active_category %}text-decoration-none text-black{% else %}text-decoration-none text-black{% endif %}">
                 All Products</a></li>
@@ -41,8 +41,8 @@
                             </div>
                             <div class="card-footer p-6 pt-0 border-top-0 bg-transparent">
                                 <div class="btn-group">
-                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'shopitem' %}">View Item</a>
-                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'shopitem' %}">Add to cart</a>
+                                    <a class="btn btn-outline-dark mt-auto" href="{% url 'shopitem' product.slug %}">View Item</a>
+                                    <a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
                                 </div>
                             </div>
 

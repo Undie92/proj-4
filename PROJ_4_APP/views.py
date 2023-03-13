@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
+from django.views import generic, View
 from datetime import datetime
-from product.models import Product, Category
-# Canvases
+from product.models import Product, Category, SingleProduct, About
 
 
 def base_template(request):
@@ -35,11 +35,15 @@ def all_products(request):
 
 
 def about(request):
-    return render(request, 'about.html')
+    about = About.objects.all()
+    context = {
+        'about': about
+    }
+    return render(request, 'about.html', context)
 
 def posters(request):
     products = Product.objects.all().filter(category__slug="posters")
-    paginator = Paginator(products, 10)
+    paginator = Paginator(products, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
    
@@ -63,6 +67,16 @@ def frames(request):
     return render(request, 'frames.html', {'page_obj': page_obj})
 
 
-def shop_item(request):
-    return render(request, 'shopitem.html')
+
+class singleproduct(View):
+    
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Product.objects.filter()
+        product = get_object_or_404(queryset, slug=slug)
+        
+        return render(
+            request,
+            "shopitem.html",
+            {'product': product}
+        )
     
