@@ -2,11 +2,12 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.views import generic, View
 from datetime import datetime
-from product.models import Product, Category, SingleProduct, About
+from product.models import Product, Category, SingleProduct, About, Index
 
 
 def base_template(request):
-    return render(request, 'index.html')
+    index = Index.objects.all()
+    return render(request, 'index.html', {'index': index})
 
 
 def all_products(request):

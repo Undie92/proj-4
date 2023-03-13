@@ -50,6 +50,9 @@ class About(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
     birth_date = models.DateField()
+    interests = models.CharField(max_length=255, blank=True, null=True)
+    speciality = models.CharField(max_length=255, blank=True, null=True)
+    city = models.CharField(max_length=255, blank=True, null=True)
     
         
     def __str__(self):
@@ -59,3 +62,11 @@ class About(models.Model):
     def get_age(self):
         age = datetime.date.today()-self.birth_date
         return int((age).days/365.25)
+    
+class Index(models.Model):
+    featured_image = CloudinaryField('image', default='placeholder')
+    name = models.CharField(max_length=255, unique=True, null=True)
+    slug = models.SlugField(max_length=255, unique=True, null=True)
+    
+    def __str__(self):
+        return self.name

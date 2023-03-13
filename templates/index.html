@@ -1,6 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% for index in index %}
 
+<header class="masthead">
+    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+        <div class="row">
+            <div class="col-xl-6 col-l-6 col-xs-12 col-md-3">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h1 class="mx-auto my-0 text-uppercase">R.H Artshop</h1> 
+                        <h2 class="mx-auto mt-2 mb-5 text-black">A website where you can buy my art and art related products.</h2> 
+                        <a href="{% url 'allproducts' %}" class="btn bg-dark font-monospace text-white">Browse Art</a>    
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-l-6 col-xs-12 col-md-3">
+                <div class="d-flex justify-content-center">
+                    <div class="image-container">
+                        {% if 'placeholder' in index.featured_image.url %}
+                        <img class="card-img-top img-fluid" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="...">
+                        {% else %}
+                        <img class="card-img-top img-fluid" src="{{ index.featured_image.url }}" alt="..." >
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
+{% endfor %}
 {% endblock %}
