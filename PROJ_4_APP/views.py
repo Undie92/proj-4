@@ -28,7 +28,7 @@ def all_products(request):
     context = {
         'categories': categories,
         'page_obj': page_obj,
-        'active_category': active_category
+        'active_category': active_category,
     }
     
     return render(request, 'allproducts.html', context)

@@ -2,6 +2,8 @@
 
 {% block content %}
 
+{% load proj_4_app_extras %}
+
 <div class="container-fluid">
     <div class="row">
         <h3 class="col-12 mt-3 text-center">Categories</h3>
@@ -62,14 +64,14 @@
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
                 <li class="page-item me-2">
-                <a href="?page={{ page_obj.previous_page_number }}" 
+                <a href="{% my_url page_obj.previous_page_number 'page' request.GET.urlencode %}" 
                     class="page-link no-text-decoration">&laquo; Previous</a></li>
                 {% endif %}
                 <span class="current pt-2">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                 </span>
                 {% if page_obj.has_next %}
                 <li class="page-item ms-2">
-                <a href="?page={{ page_obj.next_page_number }}" 
+                <a href="{% my_url page_obj.next_page_number 'page' request.GET.urlencode %}" 
                     class="page-link no-text-decoration"> NEXT &raquo;</a></li>
                 {% endif %}
             </ul>
