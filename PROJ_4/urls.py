@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from PROJ_4_APP.views import base_template, all_products, about, posters, canvas, frames, singleproduct
+from PROJ_4_APP.views import base_template, all_products, about, posters, canvas, frames, singleproduct, my_account
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +27,5 @@ urlpatterns = [
     path('canvas', canvas, name='canvas'),
     path('frames', frames, name='frames'),
     path('accounts/', include('allauth.urls')),
+    path('my_account', my_account, name='my_account')
 ]

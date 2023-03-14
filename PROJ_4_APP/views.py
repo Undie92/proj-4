@@ -9,6 +9,9 @@ def base_template(request):
     index = Index.objects.all()
     return render(request, 'index.html', {'index': index})
 
+def my_account(request):
+    return render(request, 'my_account.html')
+
 
 def all_products(request):
     products = Product.objects.all()
@@ -80,4 +83,3 @@ class singleproduct(View):
             "shopitem.html",
             {'product': product}
         )
-    

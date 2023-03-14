@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="">
+        <h1 class="text-center py-4">Welcome {{ user.username }}, This is your account page!</h1>
+        <div class="justify-content-center">
+            <ul class="text-decoration-none row">
+                <li class="col card mb-4 mt-3">
+                    <a href="{% url 'account_change_password' %}" class="btn btn-outline-light bg-dark font-monospace py-4">Change Password</a>
+                </li>
+                <li class="col card mb-4 mt-3">
+                    <a href="#" class="btn btn-outline-light bg-dark font-monospace py-4">View Orders</a>
+                </li>
+                <li class="col card mb-4 mt-3">
+                    <a href="#" class="btn btn-outline-light bg-dark font-monospace py-4">Change user information</a>
+                </li>
+            </ul>
+            <ul class="text-decoration-none row">
+                <li class="col card mb-4 mt-3">
+                    <a href="#" class="btn btn-outline-light bg-dark font-monospace py-4">Return Order</a>
+                </li>
+                <li class="col card mb-4 mt-3">
+                    <a href="#" class="btn btn-outline-light bg-dark font-monospace py-4">Make A Custom Poster Request</a>
+                </li>
+                <li class="col card mb-4 mt-3">
+                    <a href="#" class="btn btn-outline-light bg-dark font-monospace py-4">Contact support</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="text-center">
+    <h1 class="text-center"> You are not logged in!</h1>
+    <p class="text-center">Please login to see this page</p>
+    <a href="{% url 'account_login' %}" class="btn btn-outline-light bg-dark font-monospace">Login</a>
+</div>
+{% endif %}
+{% endblock %}
