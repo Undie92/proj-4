@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from PROJ_4_APP.views import base_template, all_products, about, posters, canvas, frames, singleproduct, my_account
+from PROJ_4_APP.views import base_template, all_products, about, posters, canvas, frames, singleproduct, my_account, view_orders, change_userinfo, return_order, custom_request, contact_support
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +27,10 @@ urlpatterns = [
     path('canvas', canvas, name='canvas'),
     path('frames', frames, name='frames'),
     path('accounts/', include('allauth.urls')),
-    path('my_account', my_account, name='my_account')
+    path('my_account', my_account, name='my_account'),
+    path('view_orders', view_orders, name='view_orders'),
+    path('change_userinfo', change_userinfo, name='change_userinfo'),
+    path('return_order', return_order, name='return_order'),
+    path('custom_request', custom_request, name='custom_request'),
+    path('contact_support', contact_support, name='contact_support'),
 ]

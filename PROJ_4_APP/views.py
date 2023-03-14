@@ -12,6 +12,21 @@ def base_template(request):
 def my_account(request):
     return render(request, 'my_account.html')
 
+def view_orders(request):
+    return render(request, 'view_orders.html')
+
+def change_userinfo(request):
+    return render(request, 'change_userinfo.html')
+
+def return_order(request):
+    return render(request, 'return_order.html')
+
+def custom_request(request):
+    return render(request, 'custom_request.html')
+
+def contact_support(request):
+    return render(request, 'contact_support.html')
+
 
 def all_products(request):
     products = Product.objects.all()
