@@ -10,7 +10,7 @@
             <div class="row justify-content-center">
                 {% for product in page_obj %}
                 <div class="col-xl-2 col-l-2 col-xs-6 col-md-3 justify-content-center">
-                    <div class="card mb-4">
+                    <div class="card mb-4 product_data">
                         <div class="card-body">
                             <div class="image-container">
                                 <!-- Product image-->
@@ -27,12 +27,15 @@
                                     <h5 class="fw-bolder">{{ product.name }}</h5>
                                 <!-- Product price-->
                                     Price: {{ product.price }} $
+                                    <input class="text-center me-3 qty-input" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                                 </div>
                             </div>
                             <div class="card-footer p-6 pt-0 border-top-0 bg-transparent">
                                 <div class="btn-group">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ product.id }}" class="prod_id">
                                     <a class="btn btn-outline-dark mt-auto" href="{% url 'shopitem' product.slug %}">View Item</a>
-                                    <a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
+                                    <a class="btn btn-outline-dark mt-auto addToCartBtn">Add to cart</a>
                                 </div>
                             </div>
 

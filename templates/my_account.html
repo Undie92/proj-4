@@ -2,30 +2,36 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<div class="container">
+<div class="container mt-5">
     <div class="">
         <h1 class="text-center py-4">Welcome {{ user.username }}, This is your account page!</h1>
         <div class="justify-content-center">
             <ul class="text-decoration-none row">
                 <li class="col card mb-4 mt-3">
-                    <a href="{% url 'account_change_password' %}" class="btn btn-outline-light bg-dark font-monospace py-4">Change Password</a>
+                    <a href="{% url 'account_change_password' %}" class="btn btn-outline-light bg-dark font-monospace py-4">
+                        Change Password<br><i class="bi bi-gear-fill"></i></a>
                 </li>
                 <li class="col card mb-4 mt-3">
-                    <a href="{% url 'view_orders' %}" class="btn btn-outline-light bg-dark font-monospace py-4">View Orders</a>
+                    <a href="{% url 'view_orders' %}" class="btn btn-outline-light bg-dark font-monospace py-4">
+                        View Orders<br><i class="bi bi-shop"></i></a>
                 </li>
                 <li class="col card mb-4 mt-3">
-                    <a href="{% url 'change_userinfo' %}" class="btn btn-outline-light bg-dark font-monospace py-4">Change user information</a>
+                    <a href="{% url 'change_userinfo' %}" class="btn btn-outline-light bg-dark font-monospace py-4">
+                        Change user information<br><i class="bi bi-person-circle"></i></a>
                 </li>
             </ul>
             <ul class="text-decoration-none row">
                 <li class="col card mb-4 mt-3">
-                    <a href="{% url 'return_order' %}" class="btn btn-outline-light bg-dark font-monospace py-4">Return Order</a>
+                    <a href="{% url 'return_order' %}" class="btn btn-outline-light bg-dark font-monospace py-4">
+                        Return Order<br><i class="bi bi-arrow-left-right"></i></a>
                 </li>
                 <li class="col card mb-4 mt-3">
-                    <a href="{% url 'custom_request' %}" class="btn btn-outline-light bg-dark font-monospace py-4">Make A Custom Poster Request</a>
+                    <a href="{% url 'custom_request' %}" class="btn btn-outline-light bg-dark font-monospace py-4">
+                        Make A Custom Poster Request<br><i class="bi bi-chat-text-fill"></i></a>
                 </li>
                 <li class="col card mb-4 mt-3">
-                    <a href="{% url 'contact_support' %}" class="btn btn-outline-light bg-dark font-monospace py-4">Contact support</a>
+                    <a href="{% url 'contact_support' %}" class="btn btn-outline-light bg-dark font-monospace py-4">
+                        Contact support<br><i class="bi bi-info-circle"></i></a>
                 </li>
             </ul>
         </div>

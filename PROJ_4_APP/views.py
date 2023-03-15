@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http.response import JsonResponse
 from django.core.paginator import Paginator
 from django.views import generic, View
 from datetime import datetime
-from product.models import Product, Category, SingleProduct, About, Index
+from product.models import *
 
 
 def base_template(request):
@@ -27,6 +28,68 @@ def custom_request(request):
 def contact_support(request):
     return render(request, 'contact_support.html')
 
+def cart(request):
+    cart = Cart.objects.filter(user=request.user)
+    for item in cart:
+        if item.product_qty > item.product.quantity:
+            Cart.objects.delete(id=item.id)
+    
+    cartitems = Cart.objects.filter(user=request.user)
+    total_price = 0
+    for item in cartitems:
+        total_price = total_price + item.product.price * item.product_qty
+        
+        
+    context = {
+        'cart': cart,
+        'cartitems': cartitems,
+        'total_price': total_price,
+    }
+    
+    return render(request, 'cart.html', context)
+
+def addtocart(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            prod_id = int(request.POST.get('product_id'))
+            product_check = Product.objects.get(id=prod_id)
+            if(product_check):
+                if(Cart.objects.filter(user=request.user.id, product_id=prod_id)):
+                    return JsonResponse({'status': "Product already in cart."})
+                else:
+                    prod_qty = int(request.POST.get('product_qty'))
+
+                    if product_check.quantity >= prod_qty :
+                        Cart.objects.create(user=request.user, product_id=prod_id, product_qty=prod_qty)
+                        return JsonResponse({'status': "Product added successfully"})
+                    else:
+                        return JsonResponse({'status': "Only "+ str(product_check.quantity) +" quantity available"})
+            else:
+                return JsonResponse({'status': "No such product found"})
+        else:
+            return JsonResponse({'status': "Login to Continue"})
+        
+    return redirect('/')
+
+def updatecart(request):
+    if request.method == 'POST':
+        prod_id = int(request.POST.get('product_id'))
+        if(Cart.objects.filter(user=request.user, product_id=prod_id)):
+            prod_qty = int(request.POST.get('product_qty'))
+            cart = Cart.objects.get(product_id=prod_id, user=request.user)
+            cart.product_qty = prod_qty
+            cart.save()
+            return JsonResponse({'status': "Updated Successfully"})
+    return redirect('/')
+
+def deletecartitem(request):
+    if request.method == 'POST':
+        prod_id = int(request.POST.get('product_id'))
+        if(Cart.objects.filter(user=request.user, product_id=prod_id)):
+            cartitem = Cart.objects.get(product_id=prod_id, user=request.user)
+            cartitem.delete()
+            return JsonResponse({'status': "Deleted Successfully"})
+    return redirect('/')
 
 def all_products(request):
     products = Product.objects.all()
