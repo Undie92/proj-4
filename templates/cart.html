@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card">
+<div class="card cartdata">
     <div class="row">
         <div class="container col-md-8 ">
             <div class="title">
@@ -10,11 +10,11 @@
                 </div>
             </div>
             <div class="border-top border-bottom">
-                <div class="row col main align-items-center product_data cartdata">
+                <div class="row col main align-items-center">
                     {% if cart %}
                     {% for item in cart %}
-                    <div class="col-xl-4 col-l-2 col-xs-6 col-md-4">
-                        <a href="{% url 'shopitem' item.product.slug %}">
+                    <div class="col-xl-4 col-l-2 col-xs-6 col-md-4 text-center product_data">
+                        <a>
                             {% if 'placeholder' in item.product.featured_image.url %}
                             <img class="img-fluid" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
                             {% else %}
@@ -30,8 +30,8 @@
                             {% csrf_token %}
                             <input type="hidden" value="{{ item.product.id }}" class="prod_id">
                             {% if item.product.quantity >= item.product_qty %}
-                            <label for="Quantity" class="ms-6">Quantity:</label>
-                            <div class="d-flex product_card">
+                            <label for="Quantity" class="me-3">Quantity:</label>
+                            <div class="d-flex product_card justify-content-center">
                                 <button class="me-3 mt-2 text-decoration-none text-black changeQuantity increment-btn"><i class="bi bi-plus-lg "></i></button>
                                 <input class="me-3 text-center qty-input" id="inputQuantity" type="num" value="{{ item.product_qty }}" style="max-width: 3rem" />
                                 <button class="me-3 mt-2 text-decoration-none text-black changeQuantity decrement-btn"><i class="bi bi-dash-lg"></i></button>
