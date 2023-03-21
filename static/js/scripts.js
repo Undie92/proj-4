@@ -71,6 +71,7 @@ $(document).ready(function () {
     });
 
     $(document).on("click",'.delete-cart-item', function(e) {
+        alert("Hello");
         e.preventDefault();
         
 
