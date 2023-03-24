@@ -3,6 +3,7 @@ certifi==2022.12.7
 cffi==1.15.1
 charset-normalizer==3.1.0
 cloudinary==1.32.0
+coverage==7.2.2
 crispy-bootstrap5==0.7
 cryptography==39.0.2
 defusedxml==0.7.1

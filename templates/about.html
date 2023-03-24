@@ -36,9 +36,9 @@
                 <div class="card-body">
                     <div class="image-container">
                         {% if 'placeholder' in rebecka.featured_image.url %}
-                        <img class="card-img-top img-fluid" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="...">
+                        <img class="card-img-top img-fluid" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="Placeholder image">
                         {% else %}
-                        <img class="card-img-top img-fluid" src="{{ rebecka.featured_image.url }}" alt="..." >
+                        <img class="card-img-top img-fluid" src="{{ rebecka.featured_image.url }}" alt="Profile picture of the artist" >
                         {% endif %}
                     </div>
                     <div class="card-body p-3">

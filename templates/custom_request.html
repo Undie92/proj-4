@@ -11,8 +11,8 @@
         <div class="text-center py-4">
             <form method="POST">
                 {% csrf_token %}
-                <input type="text" name="name" class="form-control" id="fullname" placeholder="Name" required/>
-                <input type="text" name="emailaddress" class="form-control" id="emailaddress" placeholder="Email" required/>
+                <input type="text" name="name" class="form-control" id="fullname" placeholder="Name" required>
+                <input type="text" name="emailaddress" class="form-control" id="emailaddress" placeholder="Email" required>
                 <textarea rows="5" name="motivesummary" class="form-control" id="motivesummary" placeholder="Motive Description" required></textarea>
                 <button type="submit" class="btn btn-outline-light bg-dark font-monospace py-3 mt-3">Send Custom Motive</button>
             </form>
